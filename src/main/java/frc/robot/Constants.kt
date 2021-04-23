@@ -4,10 +4,10 @@ package frc.team6502.robot
  * Define any constants in this file.
  */
 object Constants{
-    const val LEFT_FRONT_ID: Int = 0
-    const val LEFT_BACK_ID: Int = 1
-    const val RIGHT_FRONT_ID: Int = 2
-    const val RIGHT_BACK_ID: Int = 3
+    const val LEFT_FRONT_ID: Int = 1
+    const val LEFT_BACK_ID: Int = 2
+    const val RIGHT_FRONT_ID: Int = 3
+    const val RIGHT_BACK_ID: Int = 4
     const val JOSYSTICK_ID = 0
     const val TRIGGER_PORT = 1
     const val BOOST_PORT = 6
