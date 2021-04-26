@@ -44,8 +44,8 @@ object Drivetrain: SubsystemBase() {
 
     fun drive ( speed: Vector2d, rotation:Double){
 //        robotDrive.isSafetyEnabled()
-        println("x: " + speed.x.toString() + " y: " + speed.y.toString())
-        robotDrive.arcadeDrive(speed.y, rotation)//driveCartesian(speed.x, speed.y, rotation)
+        // println("x: " + speed.x.toString() + " y: " + speed.y.toString())
+        robotDrive.driveCartesian(speed.x, speed.y, rotation)
     }
 
 }
