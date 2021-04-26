@@ -1,7 +1,7 @@
 package frc.team6502.robot
 
 /**
- * Define any constants in this file.
+ * Define any coDDDnstants in this file.
  */
 object Constants{
     const val LEFT_FRONT_ID: Int = 1
