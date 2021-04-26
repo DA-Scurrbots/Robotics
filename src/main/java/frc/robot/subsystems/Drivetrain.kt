@@ -25,8 +25,8 @@ object Drivetrain: SubsystemBase() {
         idleMode = CANSparkMax.IdleMode.kBrake
     }
     val rightSide = SpeedControllerGroup(rightFront, rightBack)
-//    val robotDrive = DifferentialDrive(leftFront, leftBack, rightFront, rightBack)
-    val robotDrive = DifferentialDrive(leftSide,rightSide)
+    val robotDrive = MecanumDrive(leftFront, leftBack, rightFront, rightBack)
+//     val robotDrive = DifferentialDrive(leftSide,rightSide)
 
     init {
         this.defaultCommand = DefaultDrive()
