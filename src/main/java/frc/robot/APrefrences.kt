@@ -19,7 +19,7 @@ object APrefrences {
 
     //    ---- Limiters ----
     /// Speed Limits
-    val GeneralSpeed: Double = 0.01 // not Implemented
+    val GeneralSpeed: Double = 0.1 // not Implemented
 
 
     //    ---- Debugging ----
