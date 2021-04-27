@@ -1,24 +1,56 @@
 package frc.team6502.robot
 
-import edu.wpi.first.wpilibj2.command.button.Trigger
+import edu.wpi.first.wpilibj.command.button.Trigger
 import frc.team6502.robot.commands.ToggleDirection
 import frc.team6502.robot.commands.ToggleBoost
 import frc.team6502.robot.subsystems.Drivetrain
+import frc.team6502.robot.APrefrences
+import frc.team6502.robot.Helpers.Vector3d
 import java.util.function.BooleanSupplier
 import kotlin.math.abs
+import edu.wpi.first.wpilibj.BuiltinAccelerometer
 
 object OI {
-    val Joystick = edu.wpi.first.wpilibj.Joystick(Constants.JOSYSTICK_ID).apply {
-        Trigger(BooleanSupplier { getRawButtonPressed(Constants.TRIGGER_PORT) }).whileActiveOnce(ToggleDirection())
+    private val BlAccelerometer = BuiltinAccelerometer()
+    val Accelerometer: Vector3d?
+        get() {
+            if APrefrences.Accelerometer {
+                return Vector3d(
+                    BlAccelerometer.getX(),
+                    BlAccelerometer.getY(),
+                    BlAccelerometer.getZ()
+                )
+            } else {
+                return null
+            }
+        }
+
+    val LJoystick = edu.wpi.first.wpilibj.Joystick(Constants.LJOSYSTICK_ID).apply {
+        // Trigger(BooleanSupplier { getRawButtonPressed(Constants.TRIGGER_PORT) }).whileActiveOnce(ToggleDirection())
+    }
+    val RJoystick = edu.wpi.first.wpilibj.Joystick(Constants.RJOSYSTICK_ID).apply {
+        // Trigger(BooleanSupplier { getRawButtonPressed(Constants.TRIGGER_PORT) }).whileActiveOnce(ToggleDirection())
     }
     val controllerThrottle: Double
-        get() = value((Joystick.throttle*0.5)+0.5)
-    val controllerX: Double
-        get() = value(Joystick.x)
-    val controllerZ: Double
-        get() = value(Joystick.z)
-    val controllerY: Double
-        get() = value(-Joystick.y)
+        get() = value((LJoystick.throttle*0.5)+0.5)
+    val controllerRX: Double
+        get() {
+            if APrefrences.RightJoy {return value(RJoystick.x)} else {return 0}
+        }
+    val controllerRY: Double
+        get() {
+            if APrefrences.RightJoy {return value(-RJoystick.y)} else {return 0}
+        }
+    val joe: Vector2d
+    val controllerRX: Double
+        get() {
+            if APrefrences.LeftJoy {return value(LJoystick.x)} else {return 0}
+        }
+    val controllerRY: Double
+        get() {
+            if APrefrences.LeftJoy {return value(-LJoystick.y)} else {return 0}
+        }
+
     fun value(v: Double): Double {
         var command = v
 
