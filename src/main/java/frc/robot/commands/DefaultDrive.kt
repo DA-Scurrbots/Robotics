@@ -21,23 +21,24 @@ class DefaultDrive: CommandBase() {
 
     override fun execute() {
 /*
-        SmartDashboard.putNumber("Y AXIS:" , OI.controllerY)
-        SmartDashboard.putNumber("X AXIS:" , OI.controllerX)
+        SmartDashboard.putNumber("Y AXIS:" , OI.controllerLY)
+        SmartDashboard.putNumber("X AXIS:" , OI.controllerLX)
 
         try {
-            Shuffleboard.getTab("Test").addNumber("Y") { OI.controllerY }
-            Shuffleboard.getTab("Test").addNumber("X") { OI.controllerX }
+            Shuffleboard.getTab("Test").addNumber("Y") { OI.controllerLY }
+            Shuffleboard.getTab("Test").addNumber("X") { OI.controllerLX }
         } catch (e: Exception) {
             e.printStackTrace()
         }*/
         var control = Vector2d(
-            OI.controllerY * Drivetrain.frontIsFront,// * Constants.MAX_SPEED * OI.controllerThrottle,
-            OI.controllerX * Drivetrain.frontIsFront// * Constants.MAX_SPEED * OI.controllerThrottle
+            OI.controllerLY// * Drivetrain.frontIsFront,// * Constants.MAX_SPEED * OI.controllerThrottle,
+            OI.controllerLX// * Drivetrain.frontIsFront// * Constants.MAX_SPEED * OI.controllerThrottle
         )
+        var turn = OI.controllerRY
 /*        if (true) {*/
-        Drivetrain.drive(control, 0.0)/*
+        Drivetrain.drive(control, turn)/*
         }*//* else {
-//            Drivetrain.drive(OI.controllerY * Drivetrain.frontIsFront * Constants.MAX_SPEED, OI.controllerX * Constants.MAX_SPEED * Drivetrain.frontIsFront)
+//            Drivetrain.drive(OI.controllerLY * Drivetrain.frontIsFront * Constants.MAX_SPEED, OI.controllerLX * Constants.MAX_SPEED * Drivetrain.frontIsFront)
         }*/
     }
 

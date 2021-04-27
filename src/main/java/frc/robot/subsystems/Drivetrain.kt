@@ -4,10 +4,11 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive
 import edu.wpi.first.wpilibj2.command.SubsystemBase
 import frc.team6502.robot.Constants
 import frc.team6502.robot.commands.DefaultDrive
-//import edu.wpi.first.wpilibj.drive.DifferentialDrive
+import edu.wpi.first.wpilibj.drive.MecanumDrive
 import edu.wpi.first.wpilibj.drive.Vector2d
 import com.revrobotics.CANSparkMax
 import com.revrobotics.CANSparkMaxLowLevel
+import frc.team6502.robot.APrefrences
 
 
 object Drivetrain: SubsystemBase() {
@@ -25,14 +26,13 @@ object Drivetrain: SubsystemBase() {
         idleMode = CANSparkMax.IdleMode.kBrake
     }
     val rightSide = SpeedControllerGroup(rightFront, rightBack)
-//    val robotDrive = DifferentialDrive(leftFront, leftBack, rightFront, rightBack)
-    val robotDrive = DifferentialDrive(leftSide,rightSide)
+    val robotDrive = MecanumDrive(leftFront, leftBack, rightFront, rightBack)
+    // val robotDrive = DifferentialDrive(leftSide,rightSide)
 
     init {
         this.defaultCommand = DefaultDrive()
     }
 
-    var Boost = false // true turns the robot into boost mode. this ignores the speed dial on the
     var frontIsFront = 1
 
     fun switchFrontIsFront(){
@@ -43,9 +43,31 @@ object Drivetrain: SubsystemBase() {
     }
 
     fun drive ( speed: Vector2d, rotation:Double){
-//        robotDrive.isSafetyEnabled()
-        // println("x: " + speed.x.toString() + " y: " + speed.y.toString())
-        robotDrive.driveCartesian(speed.x, speed.y, rotation)
+        if APrefrences.ControllerPositions {
+            println("x: " + speed.x.toString() + " y: " + speed.y.toString())
+        }
+        var x:Double = 0
+        var y:Double = 0
+        var rot:Double = 0
+        if APrefrences.Forward && APrefrences.Backward {
+            x = speed.x
+        } else if APrefrences.Forward {
+            if speed.x > 0 {
+                x = speed.x
+            }
+        }
+        if APrefrences.Strafe {
+            y = speed.y
+        }
+        if APrefrences.Turning {
+            rot = rotation
+        }
+
+        robotDrive.driveCartesian(
+            x,
+            y,
+            rot
+        )
     }
 
 }
