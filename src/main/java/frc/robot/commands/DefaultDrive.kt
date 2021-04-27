@@ -4,10 +4,11 @@ import edu.wpi.first.wpilibj.drive.Vector2d
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 import edu.wpi.first.wpilibj2.command.CommandBase
+import frc.team6502.robot.APrefrences
 import frc.team6502.robot.Constants
 import frc.team6502.robot.OI
 import frc.team6502.robot.subsystems.Drivetrain
-import frc.team6502.robot.subsystems.Drivetrain.ToggleBoost
+//import frc.team6502.robot.subsystems.Drivetrain.ToggleBoost
 
 class DefaultDrive: CommandBase() {
 
@@ -31,8 +32,8 @@ class DefaultDrive: CommandBase() {
             e.printStackTrace()
         }*/
         var control = Vector2d(
-            OI.controllerLY// * Drivetrain.frontIsFront,// * Constants.MAX_SPEED * OI.controllerThrottle,
-            OI.controllerLX// * Drivetrain.frontIsFront// * Constants.MAX_SPEED * OI.controllerThrottle
+            OI.controllerLY * APrefrences.GeneralSpeed,// * Drivetrain.frontIsFront,// * Constants.MAX_SPEED * OI.controllerThrottle,
+            OI.controllerLX * APrefrences.GeneralSpeed// * Drivetrain.frontIsFront// * Constants.MAX_SPEED * OI.controllerThrottle
         )
         var turn = OI.controllerRY
 /*        if (true) {*/

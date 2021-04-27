@@ -38,34 +38,34 @@ object Drivetrain: SubsystemBase() {
     fun switchFrontIsFront(){
         frontIsFront*=-1
     }
-    fun ToggleBoost(){
-        Boost = !Boost
-    }
+//    fun ToggleBoost(){
+//        Boost = !Boost
+//    }
 
     fun drive ( speed: Vector2d, rotation:Double){
-        if APrefrences.ControllerPositions {
+        if (APrefrences.ControllerPositions) {
             println("x: " + speed.x.toString() + " y: " + speed.y.toString())
         }
-        var x:Double = 0
-        var y:Double = 0
-        var rot:Double = 0
-        if APrefrences.Forward && APrefrences.Backward {
+        var x:Double = 0.0
+        var y:Double = 0.0
+        var rot:Double = 0.0
+        if (APrefrences.Forward && APrefrences.Backward) {
             x = speed.x
-        } else if APrefrences.Forward {
-            if speed.x > 0 {
+        } else if (APrefrences.Forward) {
+            if (speed.x > 0) {
                 x = speed.x
             }
         }
-        if APrefrences.Strafe {
+        if (APrefrences.Strafe) {
             y = speed.y
         }
-        if APrefrences.Turning {
+        if (APrefrences.Turning) {
             rot = rotation
         }
 
         robotDrive.driveCartesian(
-            x,
             y,
+            x,
             rot
         )
     }

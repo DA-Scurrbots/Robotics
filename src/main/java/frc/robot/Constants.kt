@@ -9,7 +9,7 @@ object Constants{
     const val RIGHT_FRONT_ID: Int = 3
     const val RIGHT_BACK_ID: Int = 4
     const val LJOSYSTICK_ID = 0
-    const val RJOSYSTICK_ID = 1
+    const val RJOSYSTICK_ID = 3
     const val TRIGGER_PORT = 1
     const val BOOST_PORT = 6
     const val DEADBAND = 0.000

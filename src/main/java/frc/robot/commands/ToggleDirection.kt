@@ -11,11 +11,11 @@ class ToggleDirection: InstantCommand() {
 
 
 }
-class ToggleBoost: InstantCommand() {
-
-    override fun execute() {
-        Drivetrain.ToggleBoost()
-    }
-
-
-}
+//class ToggleBoost: InstantCommand() {
+//
+//    override fun execute() {
+//        Drivetrain.ToggleBoost()
+//    }
+//
+//
+//}
