@@ -5,10 +5,26 @@ import frc.team6502.robot.commands.ToggleDirection
 import frc.team6502.robot.commands.ToggleBoost
 import frc.team6502.robot.subsystems.Drivetrain
 import frc.team6502.robot.APrefrences
+import frc.team6502.robot.Helpers.Vector3d
 import java.util.function.BooleanSupplier
 import kotlin.math.abs
+import edu.wpi.first.wpilibj.BuiltinAccelerometer
 
 object OI {
+    private val BlAccelerometer = BuiltinAccelerometer()
+    val Accelerometer: Vector3d?
+        get() {
+            if APrefrences.Accelerometer {
+                return Vector3d(
+                    BlAccelerometer.getX(),
+                    BlAccelerometer.getY(),
+                    BlAccelerometer.getZ()
+                )
+            } else {
+                return null
+            }
+        }
+
     val LJoystick = edu.wpi.first.wpilibj.Joystick(Constants.LJOSYSTICK_ID).apply {
         // Trigger(BooleanSupplier { getRawButtonPressed(Constants.TRIGGER_PORT) }).whileActiveOnce(ToggleDirection())
     }
@@ -25,7 +41,7 @@ object OI {
         get() {
             if APrefrences.RightJoy {return value(-RJoystick.y)} else {return 0}
         }
-
+    val joe: Vector2d
     val controllerRX: Double
         get() {
             if APrefrences.LeftJoy {return value(LJoystick.x)} else {return 0}

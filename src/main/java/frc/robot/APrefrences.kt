@@ -12,6 +12,8 @@ var Turning = true      // Robot can turn
 val LeftJoy = true
 val RightJoy = true
 
+//    ---- Sensors ----
+val BuiltinAccelerometer = false
 
 //    ---- Limiters ----
 /// Speed Limits
