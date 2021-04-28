@@ -22,7 +22,7 @@ object Drivetrain: SubsystemBase() {
     val rightFront  = CANSparkMax(Constants.RIGHT_FRONT_ID, CANSparkMaxLowLevel.MotorType.kBrushless).apply {
         idleMode = CANSparkMax.IdleMode.kBrake
     }
-    val rightBack  = CANSparkMax(Constants.RIGHT_BACK_ID, CANSparkMaxLowLevel.MotorType.kBrushless).apply {
+    val rightBack = CANSparkMax(Constants.RIGHT_BACK_ID, CANSparkMaxLowLevel.MotorType.kBrushless).apply {
         idleMode = CANSparkMax.IdleMode.kBrake
     }
     val rightSide = SpeedControllerGroup(rightFront, rightBack)
@@ -31,6 +31,14 @@ object Drivetrain: SubsystemBase() {
 
     init {
         this.defaultCommand = DefaultDrive()
+        val motorList = [leftFront, leftBack, rightFront, rightBack]
+        motorList[0].inverted = false
+        motorList[1].inverted = false
+        motorList[2].inverted = false
+        motorList[3].inverted = false
+        if APrefrences.DebugMotors {
+            robotDrive.toString()
+        }
     }
 
     var frontIsFront = 1

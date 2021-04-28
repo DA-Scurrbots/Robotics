@@ -25,6 +25,7 @@ object APrefrences {
     //    ---- Debugging ----
     ///Generally keep these off
     val ControllerPositions = false
+    val DebugMotors = false
 
 
     fun Setup() {
