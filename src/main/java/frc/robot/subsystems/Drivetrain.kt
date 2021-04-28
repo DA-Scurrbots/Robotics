@@ -31,11 +31,11 @@ object Drivetrain: SubsystemBase() {
 
     init {
         this.defaultCommand = DefaultDrive()
-        val motorList = [leftFront, leftBack, rightFront, rightBack]
-        motorList[0].inverted = false
-        motorList[1].inverted = false
-        motorList[2].inverted = false
-        motorList[3].inverted = false
+        // val motorList = [leftFront, leftBack, rightFront, rightBack]
+        leftFront.inverted = false // hi
+        leftBack.inverted = true // hi
+        rightFront.inverted = false // hi
+        rightBack.inverted = true // hi
         if APrefrences.DebugMotors {
             robotDrive.toString()
         }
