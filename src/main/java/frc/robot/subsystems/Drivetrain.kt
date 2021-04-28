@@ -31,11 +31,11 @@ object Drivetrain: SubsystemBase() {
 
     init {
         this.defaultCommand = DefaultDrive()
-        val motorList = [leftFront, leftBack, rightFront, rightBack]
+//        val motorList = [leftFront, leftBack, rightFront, rightBack]
         leftFront.inverted = false
-        leftBack.inverted = true`
+        leftBack.inverted = false
         rightFront.inverted = false
-        rightBack.inverted = true
+        rightBack.inverted = false
         if (APrefrences.DebugMotors) {
             robotDrive.toString()
         }
@@ -54,9 +54,9 @@ object Drivetrain: SubsystemBase() {
         if (APrefrences.ControllerPositions) {
             println("x: " + speed.x.toString() + " y: " + speed.y.toString())
         }
-        var x:Double = 0.0
-        var y:Double = 0.0
-        var rot:Double = 0.0
+        var x = 0.0
+        var y = 0.0
+        var rot = 0.0
         if (APrefrences.Forward && APrefrences.Backward) {
             x = speed.x
         } else if (APrefrences.Forward) {
@@ -72,8 +72,8 @@ object Drivetrain: SubsystemBase() {
         }
 
         robotDrive.driveCartesian(
-            y,
-            x,
+            -y,
+            -x,
             rot
         )
     }
