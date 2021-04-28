@@ -35,7 +35,7 @@ object Drivetrain: SubsystemBase() {
         leftFront.inverted = false
         leftBack.inverted = true
         rightFront.inverted = false
-        rightBack.inverted = true
+        rightBack.inverted = true // hi
         if APrefrences.DebugMotors {
             robotDrive.toString()
         }
