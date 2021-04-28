@@ -7,15 +7,10 @@ import frc.team6502.robot.subsystems.Drivetrain
 import frc.team6502.robot.APrefrences
 import frc.team6502.robot.Helpers.Vector3d
 import java.util.function.BooleanSupplier
-import java.util.Vector
 import kotlin.math.abs
-import edu.wpi.first.wpilibj.GenericHID.Hand
-// import edu.wpi.first.wpilibj.BuiltInAccelerometer
-import edu.wpi.first.wpilibj.XboxController
-import edu.wpi.first.wpilibj.drive.Vector2d
+import edu.wpi.first.wpilibj.BuiltInAccelerometer
 
 object OI {
-    private var XBControll = XboxController(0)
 //    val Accelorometerthing = BuiltinAccelerometer()
 //    val Accelerometer: Vector3d?
 //        get() {
@@ -30,10 +25,14 @@ object OI {
 //            }
 //        }
 
-    val LJoystick = Vector2d(XBControll.getX(Hand.kLeft), XBControll.getY(Hand.kLeft))
-    val RJoystick = Vector2d(XBControll.getX(Hand.kRight), XBControll.getY(Hand.kRight))
+    val LJoystick = edu.wpi.first.wpilibj.Joystick(Constants.LJOSYSTICK_ID).apply {
+        // Trigger(BooleanSupplier { getRawButtonPressed(Constants.TRIGGER_PORT) }).whileActiveOnce(ToggleDirection())
+    }
+    val RJoystick = edu.wpi.first.wpilibj.Joystick(Constants.RJOSYSTICK_ID).apply {
+        // Trigger(BooleanSupplier { getRawButtonPressed(Constants.TRIGGER_PORT) }).whileActiveOnce(ToggleDirection())
+    }
     val controllerThrottle: Double
-        get() = 1.0
+        get() = value((LJoystick.throttle*0.5)+0.5)
     val controllerRX: Double
         get() {
             if (APrefrences.RightJoy) {return value(RJoystick.x)} else {return 0.0}
