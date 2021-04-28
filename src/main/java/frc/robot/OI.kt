@@ -30,8 +30,10 @@ object OI {
 //            }
 //        }
 
-    val LJoystick = Vector2d(XBControll.getX(Hand.kLeft), XBControll.getY(Hand.kLeft))
-    val RJoystick = Vector2d(XBControll.getX(Hand.kRight), XBControll.getY(Hand.kRight))
+    val LJoystick: Vector2d
+        get() = Vector2d(XBControll.getX(Hand.kLeft), XBControll.getY(Hand.kLeft))
+    val RJoystick: Vector2d
+        get() = Vector2d(XBControll.getX(Hand.kRight), XBControll.getY(Hand.kRight))
     val controllerThrottle: Double
         get() = 1.0
     val controllerRX: Double

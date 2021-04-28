@@ -35,7 +35,7 @@ class DefaultDrive: CommandBase() {
             OI.controllerLY * APrefrences.GeneralSpeed,// * Drivetrain.frontIsFront,// * Constants.MAX_SPEED * OI.controllerThrottle,
             OI.controllerLX * APrefrences.GeneralSpeed// * Drivetrain.frontIsFront// * Constants.MAX_SPEED * OI.controllerThrottle
         )
-        var turn = OI.controllerRY
+        var turn = OI.controllerRX * APrefrences.GeneralSpeed
 /*        if (true) {*/
         Drivetrain.drive(control, turn)/*
         }*//* else {
