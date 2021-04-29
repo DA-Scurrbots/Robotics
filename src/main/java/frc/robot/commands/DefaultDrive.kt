@@ -44,6 +44,7 @@ class DefaultDrive: CommandBase() {
                 OI.XBControll.setRumble(RumbleType.kRightRumble, -(Drivetrain.shooterMotor.get()-APrefrences.shooterMultiplier))
             }
         } else {
+            OI.XBControll.setRumble(RumbleType.kRightRumble,0.0)
             Drivetrain.shooterMotor.set(-APrefrences.ReverseIntakeSpeed * APrefrences.shooterMultiplier)
         }
         if (OI.XBControll.getBumper(Hand.kLeft) && !(OI.XBControll.bButtonPressed)) {
@@ -51,9 +52,10 @@ class DefaultDrive: CommandBase() {
             if (APrefrences.Rumble) {
                 OI.XBControll.setRumble(RumbleType.kLeftRumble, -(Drivetrain.shooterMotor.get()-APrefrences.shooterMultiplier))
             }
-        } else if (OI.XBControll.bButtonPressed) {
+        } else if (OI.XBControll.bButton) {
             Drivetrain.succ.set(-APrefrences.ReverseIntakeSpeed * APrefrences.shooterMultiplier)
         } else {
+            OI.XBControll.setRumble(RumbleType.kLeftRumble,0.0)
             Drivetrain.succ.set(0.0)
             Drivetrain.succ.set(0.0)
         }
