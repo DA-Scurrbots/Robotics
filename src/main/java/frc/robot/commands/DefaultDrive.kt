@@ -55,7 +55,7 @@ class DefaultDrive: CommandBase() {
                 OI.XBControll.setRumble(RumbleType.kLeftRumble, -(Drivetrain.shooterMotor.get()-APrefrences.shooterMultiplier))
             }
         } else if (OI.XBControll.bButton) {
-            Drivetrain.succ.set(-APrefrences.ReverseIntakeSpeed * APrefrences.shooterMultiplier)
+            Drivetrain.succ.set(-APrefrences.ReverseIntakeSpeed * APrefrences.intakeMultiplier)
         } else {
             OI.XBControll.setRumble(RumbleType.kLeftRumble,0.0)
             Drivetrain.succ.set(0.0)
