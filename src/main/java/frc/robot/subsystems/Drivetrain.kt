@@ -29,7 +29,9 @@ object Drivetrain: SubsystemBase() {
     val rightSide = SpeedControllerGroup(rightFront, rightBack)
     val robotDrive = MecanumDrive(leftFront, leftBack, rightFront, rightBack)
 
-    val succ = Spark(Constants.SUCC_ID)
+    val succ = CANSparkMax(Constants.SUCC_ID, CANSparkMaxLowLevel.MotorType.kBrushless).apply {
+        idleMode = CANSparkMax.IdleMode.kBrake
+    }
     val shooterMotor = CANSparkMax(Constants.SHOOTER_ID, CANSparkMaxLowLevel.MotorType.kBrushless).apply {
         idleMode = CANSparkMax.IdleMode.kBrake
     }
@@ -63,6 +65,7 @@ object Drivetrain: SubsystemBase() {
         var x = 0.0
         var y = 0.0
         var rot = 0.0
+        succ.inverted = true
         if (APrefrences.Forward && APrefrences.Backward) {
             x = speed.x
         } else if (APrefrences.Forward) {
@@ -76,8 +79,6 @@ object Drivetrain: SubsystemBase() {
         if (APrefrences.Turning) {
             rot = rotation
         }
-
-        if APrefrences.CenterSnap.
 
         robotDrive.driveCartesian(
             -y,

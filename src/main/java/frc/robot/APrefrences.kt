@@ -37,9 +37,9 @@ object APrefrences {
 
     //    ---- Limiters ----
     /// Speed Limits
-    val GeneralSpeed: Double = 1.0 // not Implemented
-    val shooterMultiplier: Double = 1.0
-    val intakeMultiplier: Double = 1.0
+    val GeneralSpeed: Double = 0.0 // not Implemented
+    val shooterMultiplier: Double = 0.1
+    val intakeMultiplier: Double = 0.1
     val ReverseIntakeSpeed: Double = 0.05
 
 
