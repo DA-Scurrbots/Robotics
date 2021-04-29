@@ -8,6 +8,7 @@ import frc.team6502.robot.APrefrences
 import frc.team6502.robot.Constants
 import frc.team6502.robot.OI
 import frc.team6502.robot.subsystems.Drivetrain
+import edu.wpi.first.wpilibj.GenericHID.*
 //import frc.team6502.robot.subsystems.Drivetrain.ToggleBoost
 
 class DefaultDrive: CommandBase() {
@@ -37,6 +38,24 @@ class DefaultDrive: CommandBase() {
         )
         var turn = OI.controllerRX * APrefrences.GeneralSpeed
 /*        if (true) {*/
+        if (OI.XBControll.getBumper(Hand.kRight)) {
+            Drivetrain.shooterMotor.set(1 * APrefrences.shooterMultiplier)
+            if (APrefrences.Rumble) {
+                OI.XBControll.setRumble(RumbleType.kRightRumble, -(Drivetrain.shooterMotor.get()-1))
+            }
+        } else {
+            Drivetrain.shooterMotor.set(-APrefrences.ReverseIntakeSpeed * APrefrences.shooterMultiplier)
+        }
+        if (OI.XBControll.getBumper(Hand.kLeft) && !(OI.XBControll.bButtonPressed)) {
+            Drivetrain.succ.set(1 * APrefrences.shooterMultiplier)
+            if (APrefrences.Rumble) {
+                OI.XBControll.setRumble(RumbleType.kLeftRumble, -(Drivetrain.shooterMotor.get()-1))
+            }
+        } else if (OI.XBControll.bButtonPressed) {
+            Drivetrain.succ.set(-APrefrences.ReverseIntakeSpeed * APrefrences.shooterMultiplier)
+        } else {
+            Drivetrain.succ.set(0)
+        }
         Drivetrain.drive(control, turn)/*
         }*//* else {
 //            Drivetrain.drive(OI.controllerLY * Drivetrain.frontIsFront * Constants.MAX_SPEED, OI.controllerLX * Constants.MAX_SPEED * Drivetrain.frontIsFront)

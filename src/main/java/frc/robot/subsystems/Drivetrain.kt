@@ -6,6 +6,7 @@ import frc.team6502.robot.Constants
 import frc.team6502.robot.commands.DefaultDrive
 import edu.wpi.first.wpilibj.drive.MecanumDrive
 import edu.wpi.first.wpilibj.drive.Vector2d
+import edu.wpi.first.wpilibj.Spark
 import com.revrobotics.CANSparkMax
 import com.revrobotics.CANSparkMaxLowLevel
 import frc.team6502.robot.APrefrences
@@ -27,15 +28,20 @@ object Drivetrain: SubsystemBase() {
     }
     val rightSide = SpeedControllerGroup(rightFront, rightBack)
     val robotDrive = MecanumDrive(leftFront, leftBack, rightFront, rightBack)
+
+    val succ = Spark(Constants.SUCC_ID)
+    val shooterMotor = CANSparkMax(Constants.SHOOTER_ID, CANSparkMaxLowLevel.MotorType.kBrushless).apply {
+        idleMode = CANSparkMax.IdleMode.kBrake
+    }
     // val robotDrive = DifferentialDrive(leftSide,rightSide)
 
     init {
         this.defaultCommand = DefaultDrive()
 //        val motorList = [leftFront, leftBack, rightFront, rightBack]
         leftFront.inverted = false
-        leftBack.inverted = false
+        leftBack.inverted = true
         rightFront.inverted = false
-        rightBack.inverted = false
+        rightBack.inverted = true
         if (APrefrences.DebugMotors) {
             robotDrive.toString()
         }
@@ -70,6 +76,8 @@ object Drivetrain: SubsystemBase() {
         if (APrefrences.Turning) {
             rot = rotation
         }
+
+        if APrefrences.CenterSnap.
 
         robotDrive.driveCartesian(
             -y,

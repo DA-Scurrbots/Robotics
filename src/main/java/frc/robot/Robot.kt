@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler
 class Robot : TimedRobot() {
 
     override fun robotInit() {
+        APrefrences.Setup()
         // report language as kotlin instead of assuming java because of JVM
         HAL.report(FRCNetComm.tResourceType.kResourceType_Language, 6)
         // initialize RobotContainer and by extension frc.team6502.robot.subsystems

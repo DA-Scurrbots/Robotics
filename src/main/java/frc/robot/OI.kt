@@ -9,13 +9,13 @@ import frc.team6502.robot.Helpers.Vector3d
 import java.util.function.BooleanSupplier
 import java.util.Vector
 import kotlin.math.abs
-import edu.wpi.first.wpilibj.GenericHID.Hand
+import edu.wpi.first.wpilibj.GenericHID.*
 // import edu.wpi.first.wpilibj.BuiltInAccelerometer
 import edu.wpi.first.wpilibj.XboxController
 import edu.wpi.first.wpilibj.drive.Vector2d
 
 object OI {
-    private var XBControll = XboxController(0)
+    var XBControll = XboxController(0)
 //    val Accelorometerthing = BuiltinAccelerometer()
 //    val Accelerometer: Vector3d?
 //        get() {
